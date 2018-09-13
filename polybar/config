@@ -1,0 +1,229 @@
+[settings]
+screenchange-reload = true
+
+[bar/top]
+monitor = DVI-D-0
+width = 100%
+height = 25
+
+background = #a6000000 
+foreground = #ccffffff
+
+line-color = ${bar/bottom.background}
+line-size = 16
+
+spacing = 1 
+padding-right = 3
+padding-left = 1 
+module-margin = 3
+
+font-0 = Ubuntu,Ubuntu Light:style=Regular:size=9;0
+font-1 = FontAwesome:size=9;0
+font-2 = MaterialIcons:size=9:antialias=false;-2
+
+modules-left = powermenu
+modules-center = xwindow 
+modules-right =  wired-network date alsa
+module-margin-right = 3
+
+[bar/bottom]
+monitor = DVI-D-0
+bottom = true
+width = 100%
+height = 25
+
+background = ${bar/top.background}
+foreground = ${bar/top.foreground}
+
+line-color = ${bar/top.background}
+line-size = 2
+
+spacing = 1
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 3 
+
+font-0 = Ubuntu,Ubuntu Light:style=Regular:size=9;0
+font-1 = FontAwesome:size=9;0
+font-2 = MaterialIcons:size=9:antialias=false;-2
+
+modules-left = i3
+modules-center = mpd 
+modules-right = fs-root cpu memory
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #000000
+
+label-focused = %icon% %name%
+label-focused-background = #a6000000
+label-focused-foreground = #ffffff
+;label-focused-overline= 
+label-focused-underline= #4fc3f7
+label-focused-padding = 2
+
+label-unfocused = %icon% %name%
+label-unfocused-padding = 2 
+
+label-urgent = %icon% %name%!
+label-urgent-background = #ff0000
+label-urgent-padding = 2
+
+label-visible = %icon% %name%
+label-visible-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+label = 
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 2
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 2
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 2
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 2
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 2
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 2
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 2
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 2
+ramp-coreload-7-foreground = #ff5555
+
+[module/date]
+type = internal/date
+date = %{F#4fc3f7} %{F-}%%{F#99}%d-%m-%Y%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt =%{F#4fc3f7}%{F-} %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#4fc3f7}%S%%{F-}
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label =  
+
+bar-used-width = 10
+bar-used-foreground-0 = #ffffff
+bar-used-foreground-1 = #ffffff
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = | 
+bar-used-indicator-font = 6 
+bar-used-indicator-foreground = #4fc3f7
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+[module/fs-root]
+type = internal/fs
+mount-0 = /
+label-mounted =  used %{F#4fc3f7}%percentage_used%%%{F-} of %mountpoint%
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/mpd]
+type = internal/mpd
+host = mortarion
+port = 6600
+
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 45
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+[module/wired-network]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+label-connected = %{F#4fc3f7} %{F-} %local_ip% %{F#4fc3f7} %{F-}%upspeed% %{F#4fc3f7} %{F-}%downspeed%
+label-disconnected-foreground = #66
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = #ffffff 
+label-close = 
+label-close-foreground = #4fc3f7 
+label-separator = 
+label-separator-foreground = #ffffff
+
+menu-0-0 = log out
+menu-0-0-exec = menu-open-1
+menu-0-1 = reboot
+menu-0-1-exec = menu-open-2
+menu-0-2 = power off
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = 
+menu-1-0-foreground = #4fc3f7
+menu-1-0-exec = menu-open-0
+menu-1-1 = log out
+menu-1-1-exec i3-exit 
+
+menu-2-0 = 
+menu-2-0-foreground = #4fc3f7 
+menu-2-0-exec = menu-open-0
+menu-2-1 = reboot
+menu-2-1-exec = systemctl reboot
+
+menu-3-0 = 
+menu-3-0-foreground = #4fc3f7
+menu-3-0-exec = menu-open-0
+menu-3-1 = power off
+menu-3-1-exec = systemctl poweroff
+
+; vim:ft=dosini

@@ -1,0 +1,21 @@
+!rofi.theme: sidetab
+
+!                  'background', 'border','separator'
+rofi.color-window: argb:cc000000, argb:00000000, argb:66FFFFFF
+! State:          	 'bg', 	      'fg',          'bgalt',       'hlbg',        'hlfg'
+rofi.color-normal: argb:001d1f21, argb:ccc4cbd4, argb:00404552, argb:004084d6, argb:fff9f9f9
+rofi.color-active: argb:001d1f21, argb:8000A8E0, argb:00404552, argb:004084d6, argb:fff9f9f9
+
+rofi.location: 0
+rofi.eh: 1
+rofi.bw: 0
+rofi.padding: 400 
+rofi.lines: 10
+rofi.show-icons: true
+rofi.fullscreen : true
+rofi.font: System San Francisco Display 14
+rofi.modi: drun,run,window,ssh,keys
+rofi.hide-scrollbar: true
+rofi.separator-style: none 
+
+!rofi.sidebar-mode: true
